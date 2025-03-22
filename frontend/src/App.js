@@ -45,7 +45,7 @@ function App() {
   const fetchNews = async (page = 1) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/news?category=${category}&page=${page}`
+        `https://ai-news-summary-a8yu.onrender.com/news?category=${category}&page=${page}`
       );
       setArticles(response.data.articles);
     } catch (error) {
@@ -60,7 +60,7 @@ function App() {
   const summarizeArticle = async (article) => {
     try {
       setLoadingSummary(article.title);
-      const response = await axios.post("http://localhost:3000/summarize", {
+      const response = await axios.post("https://ai-news-summary-a8yu.onrender.com/summarize", {
         title: article.title,
         description: article.description,
         content: article.content,
@@ -76,7 +76,7 @@ function App() {
   const bookmarkArticle = async (article) => {
     if (!user) return alert("Please log in to bookmark articles!");
     try {
-      await axios.post("http://localhost:3000/bookmark", {
+      await axios.post("https://ai-news-summary-a8yu.onrender.com/bookmark", {
         userId: user.uid,
         article,
       });
@@ -88,7 +88,7 @@ function App() {
 
   const fetchBookmarks = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/bookmarks/${userId}`);
+      const response = await axios.get(`https://ai-news-summary-a8yu.onrender.com/bookmarks/${userId}`);
       setBookmarks(response.data.bookmarks);
     } catch (error) {
       console.error("Error fetching bookmarks:", error);
@@ -158,7 +158,7 @@ function App() {
   const removeBookmark = async (article) => {
     if (!user) return alert("Please log in to manage bookmarks!");
     try {
-      await axios.delete(`http://localhost:3000/bookmark/${user.uid}/${article.title}`);
+      await axios.delete(`https://ai-news-summary-a8yu.onrender.com/bookmark/${user.uid}/${article.title}`);
       fetchBookmarks(user.uid); // Refresh bookmarks after removal
     } catch (error) {
       console.error("Error removing bookmark:", error);
