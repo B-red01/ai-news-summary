@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     fetchNews(page);
-  }, [page, category]);
+  }, [page, category, fetchNews]);
 
   const summarizeArticle = async (article) => {
     try {
