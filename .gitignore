@@ -67,3 +67,5 @@ build/Release
 
 # dataconnect generated files
 .dataconnect
+
+**/build/
